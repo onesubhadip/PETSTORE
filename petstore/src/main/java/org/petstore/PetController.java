@@ -1,5 +1,9 @@
 package org.petstore;
 
+import java.util.List;
+
+import org.petstore.model.Pet;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,42 +19,45 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("/pet")
+@RequestMapping(value="/pet")
 @Api(value = "PetStore API")
 public class PetController {
+	@Autowired
+	private PetService petService;
 
 	@ApiOperation(value = "Get a single pet details by pet id.", produces="application/json")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Pet found", response = String.class),
-			@ApiResponse(code = 400, message = "Invalid Id Supplied", response = String.class),
-			@ApiResponse(code = 404, message = "Pet Not Found", response = String.class) })
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Pet found", response = Pet.class),
+			@ApiResponse(code = 400, message = "Invalid Id Supplied"),
+			@ApiResponse(code = 404, message = "Pet Not Found") })
 	@GetMapping(value = "/{petId}", produces="application/json")
-	public String getPetDetails(@ApiParam(required=true, value="Id of the pet in the store") @PathVariable("petId") Long petId) {
-		return "Dog";
+	public Pet getPetDetails(@ApiParam(required=true, value="Id of the pet in the store") @PathVariable("petId") Long petId) {
+		return petService.getPetDetails(petId);
 	}
 
 	@ApiOperation(value = "List of pets for given status.", produces="application/json")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = String.class),
-			@ApiResponse(code = 404, message = "Not Found", response = String.class) })
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Pet.class),
+			@ApiResponse(code = 404, message = "Not Found") })
 	@GetMapping(value = "/status/{status}", produces="application/json")
-	public String listPetDetails(
+	public List<Pet> listPetDetails(
 			@ApiParam(allowableValues = "all,available,sold", defaultValue = "available", required=true, value="Inventory status to look for") 
-			@PathVariable("status") String statuses) {
-		return "Dog";
+			@PathVariable("status") String status) {
+		return petService.getPetDetailsByStatus(status);
 	}
 
 	@ApiOperation(value = "Add a new pet to the store.", consumes="application/json")
-	@ApiResponses(value = { @ApiResponse(code = 201, message = "Created", response = String.class) })
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "Created", response = Pet.class),
+			@ApiResponse(code = 405, message = "Invalid input")})
 	@PostMapping(value = "/", consumes="application/json")
-	public String addPetDetails(@ApiParam(value="Pet details in JSON fromat", required=true) @RequestBody(required=true) String petDetails) {
-		return "Dog";
+	public Pet addPetDetails(@ApiParam(value="Pet details in JSON fromat", required=true) @RequestBody(required=true) Pet petDetails) {
+		return petService.savePetToStore(petDetails);
 	}
 
 	@ApiOperation(value = "Remove a pet from the store.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Pet removed", response = String.class),
-			@ApiResponse(code = 400, message = "Invalid Id Supplied", response = String.class),
-			@ApiResponse(code = 404, message = "Pet Not Found", response = String.class) })
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Pet removed", response = Pet.class),
+			@ApiResponse(code = 400, message = "Invalid Id Supplied"),
+			@ApiResponse(code = 404, message = "Pet Not Found") })
 	@DeleteMapping(value = "/{petId}")
-	public String removePetDetails(@ApiParam(required=true, value="Id of the pet to remove") @PathVariable("petId") String status) {
-		return "Dog";
+	public Pet removePetDetails(@ApiParam(required=true, value="Id of the pet to remove") @PathVariable("petId") Long petId) {
+		return petService.removePet(petId);
 	}
 }
