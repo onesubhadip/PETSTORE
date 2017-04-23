@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -15,9 +17,14 @@ public class Pet {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long petId;
+    @NotNull(message = "Categoty can not be null")
 	private String category;
+	@NotNull(message = "Name can not be null")
+	@Size(min=3, max=30, message="Name has to be between 3 to 30 charecters long.")
 	private String name;
 	//private List<String> photoUrls = new ArrayList<String>();
+	
+	@NotNull(message="Status can not be null")
 	private String status;
 	
 	public Pet() {}
