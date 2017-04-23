@@ -39,7 +39,7 @@ public class PetService {
 
 	public Pet savePetToStore(Pet pet) {
 		try {
-			return petRepository.saveAndFlush(pet);
+			return petRepository.save(pet);
 		} catch (DataAccessException dao) {
 			throw new PetServiceExcption(dao);
 		}

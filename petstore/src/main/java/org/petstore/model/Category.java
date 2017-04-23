@@ -1,19 +1,30 @@
 package org.petstore.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+@Entity
 public class Category {
-
-	/*private long categoryId;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="categoryid", nullable=false)
+	@NotNull(message="Category Id has to be provided")
+	private Long categoryId;
 	private String name;
-
+	
 	public Category() {
 	}
 
-	public Category(long categoryId, String name) {
+	public Category(Long categoryId, String name) {
 		this.categoryId = categoryId;
 		this.name = name;
 	}
 
-	public long getCategoryId() {
+	public Long getCategoryId() {
 		return categoryId;
 	}
 
@@ -27,6 +38,6 @@ public class Category {
 
 	public void setName(String name) {
 		this.name = name;
-	}*/
+	}
 
 }

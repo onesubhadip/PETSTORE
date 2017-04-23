@@ -1,9 +1,17 @@
 package org.petstore.model;
 
+import java.util.List;
+
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -14,32 +22,40 @@ import io.swagger.annotations.ApiModelProperty;
 @Entity
 public class Pet {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long petId;
-    @NotNull(message = "Categoty can not be null")
-	private String category;
+	@NotNull(message = "Categoty can not be null")
+	@ManyToOne // (cascade = {CascadeType.ALL})
+	@JoinColumn(name = "category_categoryid", nullable = false, updatable = false)
+	@Valid
+	private Category category;
 	@NotNull(message = "Name can not be null")
-	@Size(min=3, max=30, message="Name has to be between 3 to 30 charecters long.")
+	@Size(min = 3, max = 30, message = "Name has to be between 3 to 30 charecters long.")
 	private String name;
-	//private List<String> photoUrls = new ArrayList<String>();
-	
-	@NotNull(message="Status can not be null")
-	private String status;
-	
-	public Pet() {}
 
-	public Pet(String category, String name, String status) {
+	@ElementCollection
+	@CollectionTable(name = "PET_IMAGES", joinColumns = @JoinColumn(name = "petId"))
+	@Column(name = "IMAGE_URL")
+	private List<String> photoUrls;
+
+	@NotNull(message = "Status can not be null")
+	private String status;
+
+	public Pet() {
+	}
+
+	public Pet(Category category, String name, String status) {
 		this.category = category;
 		this.name = name;
 		this.status = status;
 	}
 
-	public String getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
@@ -60,13 +76,13 @@ public class Pet {
 		this.name = name;
 	}
 
-/*	public List<String> getPhotoUrls() {
+	public List<String> getPhotoUrls() {
 		return photoUrls;
 	}
 
 	public void setPhotoUrls(List<String> photoUrls) {
 		this.photoUrls = photoUrls;
-	}*/
+	}
 
 	@ApiModelProperty(value = "Pet status in the store", allowableValues = "available,sold")
 	public String getStatus() {
