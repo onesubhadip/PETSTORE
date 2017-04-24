@@ -41,6 +41,10 @@ public class Pet {
 
 	@NotNull(message = "Status can not be null")
 	private String status;
+	
+	@NotNull(message="Pet description has to be provided")
+	@Size(min = 5, max = 100, message = "Description has to be between 5 to 100 charecters long.")
+	private String description;
 
 	public Pet() {
 	}
@@ -91,6 +95,14 @@ public class Pet {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override

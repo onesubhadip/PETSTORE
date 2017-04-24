@@ -1,0 +1,54 @@
+<div id="sticky-wrapper" class="sticky-wrapper is-sticky" style="height: 71px;">
+    <nav class="navbar navbar-default navbar-fixed-top yamm sticky-header" style="width: 1349px;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/petstore">
+                    <p class="navbar-text pull-left">PET</p><span><img class="pull-left" src="/petstore/image/cat.svg" alt="PetStore Logo"></span>
+                    <p class="navbar-text">STORE</p>
+                </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse" style="max-height: 100px;">
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+        <!--/.container-fluid -->
+    </nav>
+</div>
+<div class="container">
+    <div class="row" style="margin-top:50px;">
+        <div class="col-xs-6">
+            <img class="home-image img-responsive pull-right" src="/petstore/image/bulldog.svg" alt="PetStore Home Image">
+        </div>
+        <div class="col-xs-6 text-left buttonBox">
+            <H1 class="home-quote icondescription">HAPPINESS IS <br>A WARM PUPPY <br>READY TO BECOME <br>YOUR NEXT BEST FRIEND.</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <button type="button" class="btn btn-header pull-right">ADD PET</button>
+        </div>
+        <div class="col-xs-6 text-left">
+            <button type="button" class="btn btn-header pull-left">SHOW PETS</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <pet-info category="Dog" name="Labrador" status="Available" description="A very cure puppy Lab on sale."></pet-info>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <pet-info category="Cat" name="Meaw" status="Available" description="This is a very smart cat. It milkey white in color."></pet-info>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <pet-info category="Cat" name="Bengal Cat" status="Available" description="This cat loves to eat fish."></pet-info>
+        </div>
+       	<div class="col-xs-12 col-sm-6 col-md-3">
+            <pet-info category="Dog" name="Bulldog" status="Available" description="Very friendly andactive in nature."></pet-info>
+        </div>
+    </div>
+</div>

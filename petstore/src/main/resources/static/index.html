@@ -6,66 +6,24 @@
     <title>Pet Store</title>
     <script src="/petstore/js/angular.min.js"></script>
     <script src="/petstore/js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script src="/petstore/js/angular-route.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/petstore/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/petstore/css/ui-bootstrap-2.5.0-csp.css">
     <link rel="stylesheet" type="text/css" href="/petstore/css/petstoreapp.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+
+
 </head>
 
 <body>
+    <script src="/petstore/js/app.js"></script>
+    <script src="/petstore/js/petInfoDirective.js"></script>
     <div ng-app="PETSTORE">
-        <div id="sticky-wrapper" class="sticky-wrapper is-sticky" style="height: 71px;">
-            <nav class="navbar navbar-default navbar-fixed-top yamm sticky-header" style="width: 1349px;">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="/petstore">
-                            <p class="navbar-text pull-left">PET</p><span><img class="pull-left" src="/petstore/image/cat.svg" alt="PetStore Logo"></span>
-                            <p class="navbar-text">STORE</p>
-                        </a>
-                    </div>
-                    <div id="navbar" class="navbar-collapse collapse" style="max-height: 100px;">
-                    </div>
-                    <!--/.nav-collapse -->
-                </div>
-                <!--/.container-fluid -->
-            </nav>
-        </div>
-        <div class="container">
-        	<img class="img-responsive" src="/petstore/image/bulldog.svg" alt="PetStore Home Image">
-        </div>
+    	<div ng-view></div>
     </div>
-    <script>
-    angular.module('PETSTORE', ['ui.bootstrap'])
-        .controller('ButtonsCtrl', function($scope) {
-            $scope.singleModel = 1;
-
-            $scope.radioModel = 'Middle';
-
-            $scope.checkModel = {
-                left: false,
-                middle: true,
-                right: false
-            };
-
-            $scope.checkResults = [];
-
-            $scope.$watchCollection('checkModel', function() {
-                $scope.checkResults = [];
-                angular.forEach($scope.checkModel, function(value, key) {
-                    if (value) {
-                        $scope.checkResults.push(key);
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 
 </html>
