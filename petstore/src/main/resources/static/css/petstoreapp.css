@@ -1,0 +1,105 @@
+.sticky-header {
+  width: 100% !important;
+  left: 0;
+  z-index: 999 !important;
+}
+
+.is-sticky .navbar-default.sticky-header {
+  border-bottom: 1px solid #DFDFDF;
+  background: #F3F3F3;
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-transition: margin-top .5s ease-out;
+  transition: margin-top .5s ease-out;
+  -webkit-box-shadow: 0 0 3px #C3C3C3;
+  box-shadow: 0 0 3px #C3C3C3;
+}
+
+.navbar-nav > li > a {
+  font-weight: 500;
+  text-transform: capitalize;
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+}
+
+.navbar-default {
+  margin: 0px;
+  border: 0px;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+  padding: 10px 0;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #666666;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.navbar-default .navbar-nav > li > a:hover {
+  color: #26bbad !important;
+}
+
+.navbar-brand > span > img {
+  margin-top: -15px;
+  width: 48px;
+  height: 48px;
+}
+
+.navbar-brand > p { 
+	font-family: 'Amatic SC', cursive; 
+	font-size: 40px;
+	margin-top: 6px;
+   
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+  color: #26bbad !important;
+  background-color: transparent;
+}
+
+
+/**transparent header**/
+.header-transparent {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 999;
+}
+.header-transparent .navbar-default {
+  background: transparent;
+  border-bottom: 0px;
+}
+.header-transparent .navbar-default .navbar-nav > li > a {
+  color: #fff;
+}
+.header-transparent .navbar-default .navbar-brand {
+  width: 150px;
+}
+.header-transparent .navbar-default .navbar-brand img {
+  position: absolute;
+}
+.header-transparent .navbar-default .navbar-brand img.logo-scroll {
+  opacity: 0;
+}
+.header-transparent .is-sticky .navbar-default {
+  background: rgba(255, 255, 255, 0.9);
+}
+.header-transparent .is-sticky .navbar-default .navbar-nav > li > a {
+  color: #333;
+}
+.header-transparent .is-sticky .navbar-default .navbar-brand img.logo-scroll {
+  opacity: 1;
+}
+
+@media (min-width: 990px) {
+  .navbar-center-logo {
+    padding: 40px 0;
+  }
+  .navbar-center-logo .navbar-brand {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -46px !important;
+  }
+}
