@@ -3,6 +3,7 @@ package org.petstore.util;
 import org.petstore.model.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 @ControllerAdvice
 @RestController
@@ -21,6 +24,12 @@ public class AppExceptionHandler {
 		BindingResult result = ex.getBindingResult();
 		FieldError error = result.getFieldError();
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(error.getDefaultMessage()));
+	}
+	
+	@ExceptionHandler({HttpMessageNotReadableException.class, JsonMappingException.class})
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ResponseEntity<ErrorResponse> invalidInputFormat() {
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Input can not be parsed."));
 	}
 
 	@ExceptionHandler(value = Exception.class)
