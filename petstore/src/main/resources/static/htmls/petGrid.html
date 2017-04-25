@@ -5,8 +5,8 @@
             <div class="sidebar-widget sidebar-vertical">
                 <h4>Categories</h4>
                 <ul class="list-unstyled">
-                    <category name="Dog" count="10"></category>
-                    <category name="Cat" count="17"></category>
+                    <category ng-repeat="category in petCtrl.uniqueCategories" name="{{category.name}}" count="{{category.count}}"></category>
+                    <!-- <category name="Cat" count="17"></category> -->
                 </ul>
             </div>
         </div>

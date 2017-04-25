@@ -3,10 +3,11 @@
 app.controller('PetController', ['$scope', 'PetService', function($scope, PetService) {
 	var petCtrl = this;
 	petCtrl.pets=[];
+    petCtrl.uniqueCategories=[];
     
     petCtrl.getPetListByStatus = function(inventoryStatus){
-    	    petCtrl.pets = PetService.PetResource.getByStatus({ status: inventoryStatus }, function(data){
-				console.log('data', JSON.stringify(data));
+    	    petCtrl.pets = PetService.petResource().getByStatus({ status: inventoryStatus }, function(data){
+                petCtrl.uniqueCategories = PetService.getDistinctCategoty(data)
     	    },
     	    function(err){
     	    	console.log('err',err);
