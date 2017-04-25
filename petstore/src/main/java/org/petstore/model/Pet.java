@@ -6,6 +6,7 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,7 +35,7 @@ public class Pet {
 	@Size(min = 3, max = 30, message = "Name has to be between 3 to 30 charecters long.")
 	private String name;
 
-	@ElementCollection
+	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name = "PET_IMAGES", joinColumns = @JoinColumn(name = "petId"))
 	@Column(name = "IMAGE_URL")
 	private List<String> photoUrls;

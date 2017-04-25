@@ -6,10 +6,7 @@ app.directive('petInfo', function() {
 		templateUrl: '/petstore/htmls/petInfo.html',
 		replace:true,
 		scope:{
-			category: "@",
-			name: "@",
-			status: "@",
-			description: "@"
+			pet: "="
 		}
 	}
 

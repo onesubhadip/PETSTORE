@@ -2,13 +2,20 @@
 
 angular.module('PETSTORE', [
 	'ngRoute',
-	'ui.bootstrap'
+	'ui.bootstrap',
+	'ngResource'
 ])
-.config(function ($routeProvider) {
+.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider.when('/', {
-		templateUrl: '/petstore/htmls/main.html',
+		redirectTo: '/home'
+	}).when('/home', {
+		templateUrl: '/petstore/htmls/petStoreHome.html',
 		reloadOnSearch: false
-	}).otherwise('/');
-});
+	}).when('/petlist', {
+		templateUrl: '/petstore/htmls/petGrid.html',
+		reloadOnSearch: false
+	})
+	.otherwise('/');
+}]);
 
 var app = angular.module('PETSTORE');
