@@ -1,22 +1,4 @@
-<pet-store-header></pet-store-header>
-<div class="container" ng-controller="PetController as petCtrl" style="position: relative;">
-    <div class="row" style="margin-top:50px;">
-        <div class="col-xs-6">
-            <img class="home-image img-responsive pull-right" src="/petstore/image/bulldog.svg" alt="PetStore Home Image">
-        </div>
-        <div class="col-xs-6 text-left buttonBox">
-            <H1 class="home-quote icondescription">HAPPINESS IS <br>A WARM PUPPY <br>READY TO BECOME <br>YOUR NEXT BEST FRIEND.</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-6">
-            <a type="button" ng-click="petCtrl.toggleAddPetForm()" class="btn btn-header pull-right">ADD PET</a>
-        </div>
-        <div class="col-xs-6 text-left">
-            <a type="button" href="#!/petlist" class="btn btn-header pull-left">SHOW PETS</a>
-        </div>
-    </div>
-
+<div ng-controller="PetController as petCtrl">
     <div pageslide ps-open="petCtrl.isAddFormOpen" ps-side="bottom" ps-speed="0.25" ps-body-class="true" ps-click-outside="false" ps-size="100px">
         <div class="container">
             <div class="row">

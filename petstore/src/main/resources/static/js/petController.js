@@ -16,7 +16,6 @@ app.controller('PetController', ['$scope', 'PetService', 'Filters', function($sc
         "status": "available"
     };
     petCtrl.tempImageForPost = "";
-
     petCtrl.clearForm = function(){
         petCtrl.petObjToAdd = {
             "category": {
@@ -34,6 +33,7 @@ app.controller('PetController', ['$scope', 'PetService', 'Filters', function($sc
         petCtrl.petObjToAdd.photoUrls.push(petCtrl.tempImageForPost);
         PetService.savePet(petCtrl.petObjToAdd).then(function(response){
             console.log('data', response.data);
+            if(petCtrl.isAddFormOpen) {petCtrl.isAddFormOpen=false;}
         }, function(err){
             console.log('Error: ', err.data.errorMessage);
         });
