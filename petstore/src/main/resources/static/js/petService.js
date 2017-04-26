@@ -3,7 +3,7 @@
 app.factory('PetService', ['$resource', '$filter', '$http', function($resource, $filter, $http) {
 
     var petResource = function() {
-        return $resource('/petstore/pet/:pet', {pet : '@pet'}, {
+        return $resource('/petstore/pet/:petId', {petId : '@petId'}, {
             getByStatus: {
                 method: "GET",
                 isArray: true,

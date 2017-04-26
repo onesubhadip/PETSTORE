@@ -16,7 +16,7 @@ app.controller('PetController', ['$scope', 'PetService', 'Filters', function($sc
         "status": "available"
     };
     petCtrl.tempImageForPost = "";
-    petCtrl.clearForm = function(){
+    petCtrl.clearForm = function() {
         petCtrl.petObjToAdd = {
             "category": {
                 "categoryId": null
@@ -29,12 +29,12 @@ app.controller('PetController', ['$scope', 'PetService', 'Filters', function($sc
         petCtrl.tempImageForPost = "";
     }
 
-    petCtrl.savePet = function(){
+    petCtrl.savePet = function() {
         petCtrl.petObjToAdd.photoUrls.push(petCtrl.tempImageForPost);
-        PetService.savePet(petCtrl.petObjToAdd).then(function(response){
+        PetService.savePet(petCtrl.petObjToAdd).then(function(response) {
             console.log('data', response.data);
-            if(petCtrl.isAddFormOpen) {petCtrl.isAddFormOpen=false;}
-        }, function(err){
+            if (petCtrl.isAddFormOpen) { petCtrl.isAddFormOpen = false; }
+        }, function(err) {
             console.log('Error: ', err.data.errorMessage);
         });
     }
@@ -74,6 +74,11 @@ app.controller('PetController', ['$scope', 'PetService', 'Filters', function($sc
         /*petCtrl.pets = PetService.filterByCategory(petCtrl.pets, categoriesToFilter);*/
     }, true);
 
+    $scope.$on('isNewFetchRequired', function(event, data) {
+        if(data !== undefined && data.required){
+            petCtrl.getPetListByStatus("All");
+        }
+    });
 
     //Initially loading all pets   
     petCtrl.getPetListByStatus('All');

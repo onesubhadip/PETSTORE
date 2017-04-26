@@ -6,8 +6,11 @@
         <div class="product-desc">
             <span class="product-status {{ pet.status | lowercase}}">{{pet.status}}</span>
             <small class="text-muted">{{pet.category.name}}</small>
-            <a href="#" class="product-name">{{pet.name}}</a>
+            <a class="product-name">{{pet.name}}</a>
             <div class="small">{{pet.description}}</div>
+            <div class=product-actions ng-if="(pet.status | uppercase) === 'SOLD'" ng-click="removePet()">
+                <span class="product-actionsButton">Remove Pet</span>
+            </div>
         </div>
     </div>
 </div>
