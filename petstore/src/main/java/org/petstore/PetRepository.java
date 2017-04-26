@@ -14,5 +14,6 @@ public interface PetRepository extends JpaRepository<Pet, Long>{
 
 	public Pet findByPetId(Long petId);
 	public List<Pet> findByStatusContainingIgnoreCase(String status);
+	public List<Pet> findByCategory_nameIn(List<String> categories);
 	@Transactional @Modifying public Integer removeByPetId(Long petId);
 }

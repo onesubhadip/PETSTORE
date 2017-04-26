@@ -25,12 +25,32 @@ public class PetService {
 
 	}
 
+	public List<Pet> getAllPets() {
+		try {
+			return petRepository.findAll();
+		} catch (DataAccessException dao) {
+			throw new PetServiceExcption(dao);
+		}
+	}
+
 	public List<Pet> getPetDetailsByStatus(String status) {
 		try {
 			if (status.equalsIgnoreCase(PetStatus.ALL.name())) {
 				return petRepository.findAll();
 			} else {
 				return petRepository.findByStatusContainingIgnoreCase(status);
+			}
+		} catch (DataAccessException dao) {
+			throw new PetServiceExcption(dao);
+		}
+	}
+
+	public List<Pet> getPetDetailsByCategories(List<String> categories) {
+		try {
+			if (categories.size() > 0) {
+				return petRepository.findByCategory_nameIn(categories);
+			} else {
+				return null;
 			}
 		} catch (DataAccessException dao) {
 			throw new PetServiceExcption(dao);

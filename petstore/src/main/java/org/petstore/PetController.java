@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,7 +28,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping(value = "/pet")
-@Api(tags = {"Pet resources"})
+@Api(tags = { "Pet resources" })
 public class PetController {
 	@Autowired
 	private PetService petService;
@@ -40,7 +41,7 @@ public class PetController {
 	public Pet getPetDetails(
 			@ApiParam(required = true, value = "Id of the pet in the store") @PathVariable("petId") Long petId) {
 		Pet pet = petService.getPetDetails(petId);
-		if (pet == null){
+		if (pet == null) {
 			throw new PetNotFoundException();
 		}
 		return pet;
@@ -50,22 +51,42 @@ public class PetController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Pet.class),
 			@ApiResponse(code = 404, message = "No Pet for the selected status.") })
 	@GetMapping(value = "/status/{status}", produces = "application/json")
-	@ResponseStatus(code=HttpStatus.OK)
-	public ResponseEntity<List<Pet>> listPetDetails(
+	@ResponseStatus(code = HttpStatus.OK)
+	public ResponseEntity<List<Pet>> listPetsByStatus(
 			@ApiParam(allowableValues = "all,available,sold", defaultValue = "available", required = true, value = "Inventory status to look for") @PathVariable("status") String status) {
-		
+
 		List<Pet> pets = petService.getPetDetailsByStatus(status);
-		if (pets == null || pets.isEmpty()){
+		if (pets == null || pets.isEmpty()) {
 			throw new PetNotFoundException();
 		}
 		return ResponseEntity.ok(pets);
+	}
+
+	@ApiOperation(value = "List of pets for given categories.", produces = "application/json")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Pet.class),
+			@ApiResponse(code = 404, message = "No Pet for the selected categories.") })
+	@GetMapping(value = "/categories", produces = "application/json")
+	@ResponseStatus(code = HttpStatus.OK)
+	public ResponseEntity<List<Pet>> listPetsByCategory(
+			@ApiParam(required = false, value = "List of categories") @RequestParam(value = "categories", required = false) List<String> categories) {
+		List<Pet> pets = null;
+		if (categories == null || categories.isEmpty()) {
+			pets = petService.getAllPets();
+		} else {
+			pets = petService.getPetDetailsByCategories(categories);
+		}
+		if (pets == null || pets.isEmpty()) {
+			throw new PetNotFoundException();
+		}
+		return ResponseEntity.ok(pets);
+
 	}
 
 	@ApiOperation(value = "Add a new pet to the store.", consumes = "application/json")
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Pet saved", response = Pet.class),
 			@ApiResponse(code = 400, message = "Invalid input for new Pet") })
 	@PostMapping(value = "/", consumes = "application/json")
-	@ResponseStatus(code=HttpStatus.CREATED)
+	@ResponseStatus(code = HttpStatus.CREATED)
 	public ResponseEntity<Pet> addPetDetails(
 			@ApiParam(value = "Pet details in JSON fromat", required = true) @Validated @RequestBody(required = true) Pet petDetails) {
 
@@ -77,12 +98,12 @@ public class PetController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Pet removed", response = Pet.class),
 			@ApiResponse(code = 404, message = "Pet Not Found") })
 	@DeleteMapping(value = "/{petId}")
-	@ResponseStatus(code=HttpStatus.OK)
+	@ResponseStatus(code = HttpStatus.OK)
 	public ResponseEntity<Pet> removePetDetails(
 			@ApiParam(required = true, value = "Id of the pet to remove") @PathVariable("petId") Long petId) {
-		
+
 		Pet pet = petService.removePet(petId);
-		if (pet == null){
+		if (pet == null) {
 			throw new PetNotFoundException();
 		}
 		return ResponseEntity.ok(pet);
@@ -90,7 +111,7 @@ public class PetController {
 
 	@ExceptionHandler(PetNotFoundException.class)
 	public ResponseEntity<ErrorResponse> NotFoundexceptionHandler() {
-		
+
 		ErrorResponse error = new ErrorResponse();
 		error.setErrorMessage("No such pet in the store inventory.");
 		return new ResponseEntity<ErrorResponse>(error, HttpStatus.NOT_FOUND);

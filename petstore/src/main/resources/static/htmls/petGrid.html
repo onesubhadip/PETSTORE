@@ -1,4 +1,5 @@
 <pet-store-header></pet-store-header>
+
 <div class="container" ng-controller="PetController as petCtrl">
     <div class=row>
         <div class="col-xs-12 col-sm-2 col-md-2">
@@ -6,7 +7,12 @@
                 <h4>Categories</h4>
                 <ul class="list-unstyled">
                     <category ng-repeat="category in petCtrl.uniqueCategories" name="{{category.name}}" count="{{category.count}}"></category>
-                    <!-- <category name="Cat" count="17"></category> -->
+                </ul>
+            </div>
+            <div class="sidebar-widget sidebar-vertical">
+                <h4>Status</h4>
+                <ul class="list-unstyled">
+                    <status ng-repeat="status in petCtrl.uniqueStatus" name="{{status.name}}" count="{{status.count}}"></status>
                 </ul>
             </div>
         </div>

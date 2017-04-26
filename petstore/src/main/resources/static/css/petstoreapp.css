@@ -343,6 +343,10 @@ body{
     background: #fff;
     border-radius: 2px;
 }
+.checked{
+    border: none;
+    background: #ee5f73;
+    }
 .common-customCheckbox {
     position: relative;
     cursor: pointer;
