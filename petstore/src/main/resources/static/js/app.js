@@ -3,7 +3,8 @@
 angular.module('PETSTORE', [
 	'ngRoute',
 	'ui.bootstrap',
-	'ngResource'
+	'ngResource',
+	'pageslide-directive'
 ])
 .config(['$routeProvider', function ($routeProvider) {
 	$routeProvider.when('/', {

@@ -1,6 +1,5 @@
 <pet-store-header></pet-store-header>
-
-<div class="container" ng-controller="PetController">
+<div class="container" ng-controller="PetController as petCtrl" style="position: relative;">
     <div class="row" style="margin-top:50px;">
         <div class="col-xs-6">
             <img class="home-image img-responsive pull-right" src="/petstore/image/bulldog.svg" alt="PetStore Home Image">
@@ -11,10 +10,35 @@
     </div>
     <div class="row">
         <div class="col-xs-6">
-            <a type="button" href="#!/home" class="btn btn-header pull-right">ADD PET</a>
+            <a type="button" ng-click="petCtrl.toggleAddPetForm()" class="btn btn-header pull-right">ADD PET</a>
         </div>
         <div class="col-xs-6 text-left">
             <a type="button" href="#!/petlist" class="btn btn-header pull-left">SHOW PETS</a>
+        </div>
+    </div>
+    <div pageslide ps-open="petCtrl.isAddFormOpen" ps-side="bottom" ps-speed="0.25" ps-body-class="true" ps-click-outside="false" ps-size="100px">
+        <div class="container">
+            <form class="form-inline">
+                <div class="form-group">
+                    <input type="text" class="form-control border" id="petName" placeholder="Pet Name" ng-model="petCtrl.petObjToAdd.name">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control border" id="petDecs" placeholder="Pet description" ng-model="petCtrl.petObjToAdd.description">
+                </div>
+                <div class="form-group">
+                    <select ng-model="petCtrl.petObjToAdd.category.categoryId" class="border">
+                        <option value="1" selected>Cat</option>
+                        <option value="2">Dog</option>
+                        <option value="3">Lion</option>
+                        <option value="4">Fish</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control border" id="petImage" placeholder="Pet Image Url" ng-model="petCtrl.tempImageForPost">
+                </div>
+                <button class="btn btn-default" ng-click="petCtrl.savePet()">Save Pet</button>
+                <button class="btn btn-default" ng-click="petCtrl.toggleAddPetForm();petCtrl.clearForm()">Cancel</button>
+            </form>
         </div>
     </div>
 </div>

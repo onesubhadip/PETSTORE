@@ -1,9 +1,9 @@
 'use strict';
 
-app.factory('PetService', ['$resource', '$filter', function($resource, $filter) {
+app.factory('PetService', ['$resource', '$filter', '$http', function($resource, $filter, $http) {
 
     var petResource = function() {
-        return $resource('/petstore/pet/status/:pet', { pet: '@pet' }, {
+        return $resource('/petstore/pet/:pet', {pet : '@pet'}, {
             getByStatus: {
                 method: "GET",
                 isArray: true,
@@ -16,6 +16,11 @@ app.factory('PetService', ['$resource', '$filter', function($resource, $filter) 
             }
         });
     }
+ 	var savePet = function(pet){
+		return $http.post('/petstore/pet/', pet);
+ 	} 
+    $http.post
+
     var getDistinctCategoty = function(pets) {
         var list = {};
         pets.forEach(function(pet) {
@@ -62,7 +67,8 @@ app.factory('PetService', ['$resource', '$filter', function($resource, $filter) 
     return {
         petResource: petResource,
         getDistinctCategoty: getDistinctCategoty,
-        getDistinctStatus: getDistinctStatus
+        getDistinctStatus: getDistinctStatus,
+        savePet: savePet
     }
 
 }]);
