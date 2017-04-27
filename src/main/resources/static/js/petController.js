@@ -13,7 +13,7 @@ app.controller('PetController', ['$scope', 'PetService', 'Filters', function($sc
         "description": null,
         "name": null,
         "photoUrls": [],
-        "status": "available"
+        "status": "Available"
     };
     petCtrl.tempImageForPost = "";
     petCtrl.clearForm = function() {
@@ -24,7 +24,7 @@ app.controller('PetController', ['$scope', 'PetService', 'Filters', function($sc
             "description": null,
             "name": null,
             "photoUrls": [],
-            "status": "available"
+            "status": "Available"
         };
         petCtrl.tempImageForPost = "";
     }
