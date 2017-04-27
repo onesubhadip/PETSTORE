@@ -34,7 +34,16 @@ Swagger : http://localhost:8080/petstore/swagger-ui.html
 
 
 ### Deployment in Heroku
-
+Heroku CLI, Git, Maven 3, Java 8 should be locally installed. 
+Please use [this](https://devcenter.heroku.com/articles/getting-started-with-java#introduction) reference document.
+```
+$heroku login
+$heroku create
+$git push heroku master
+$heroku ps:scale web=1
+$heroku open
+$heroku logs --tail
+```
 Please use [this](https://devcenter.heroku.com/articles/getting-started-with-java#introduction) reference document.
 
 >**Credit for Pet Images**
