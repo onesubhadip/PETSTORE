@@ -1,1 +1,0 @@
-web: java -jar target/petstore-1.0.0.jar
