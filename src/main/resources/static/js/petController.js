@@ -80,12 +80,6 @@ app.controller('PetController', ['$scope', 'PetService', 'Filters', function($sc
         }
     });
 
-    //Initially loading all pets   
-    petCtrl.getPetListByStatus('All');
-
-
-
-
     petCtrl.isAddFormOpen = false;
     petCtrl.size = '100px';
     petCtrl.toggleAddPetForm = function() {
