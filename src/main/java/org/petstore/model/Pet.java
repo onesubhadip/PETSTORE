@@ -26,11 +26,13 @@ public class Pet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long petId;
+	
 	@NotNull(message = "Categoty can not be null")
-	@ManyToOne // (cascade = {CascadeType.ALL})
+	@ManyToOne
 	@JoinColumn(name = "category_categoryid", nullable = false, updatable = false)
 	@Valid
 	private Category category;
+	
 	@NotNull(message = "Name can not be null")
 	@Size(min = 3, max = 30, message = "Name has to be between 3 to 30 charecters long.")
 	private String name;

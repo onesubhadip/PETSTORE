@@ -14,6 +14,7 @@ public class Category {
 	@Column(name="categoryid", nullable=false)
 	@NotNull(message="Category Id has to be provided")
 	private Long categoryId;
+	
 	private String name;
 	
 	public Category() {

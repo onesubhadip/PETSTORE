@@ -8,6 +8,10 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * JPARepository interface implementation to create custom queries using method names.
+ * Implementation of this class is not required.
+ */
 @Transactional(readOnly = true)
 @Repository
 public interface PetRepository extends JpaRepository<Pet, Long>{

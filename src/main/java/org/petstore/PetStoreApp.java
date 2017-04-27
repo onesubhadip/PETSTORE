@@ -5,6 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+/**
+ * Application started class. 
+ * Application is bootstraped from the main method of this class.
+ */
 @SpringBootApplication
 @EnableJpaRepositories
 public class PetStoreApp implements CommandLineRunner{

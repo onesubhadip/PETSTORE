@@ -1,5 +1,6 @@
 package org.petstore.util;
 
+
 import org.petstore.model.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
-
+/**
+*	Global exception handler class for spring MVC
+*/
 @ControllerAdvice
 @RestController
 public class AppExceptionHandler {
@@ -34,6 +37,6 @@ public class AppExceptionHandler {
 
 	@ExceptionHandler(value = Exception.class)
 	public ResponseEntity<ErrorResponse> handleException(Exception e) {
-		return ResponseEntity.ok(new ErrorResponse("Request could not be completed"));
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse("Request could not be completed"));
 	}
 }
