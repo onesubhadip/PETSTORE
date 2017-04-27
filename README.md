@@ -22,7 +22,7 @@
 - [Heroku](https://www.heroku.com)
 
 
-###Run from local:
+### Run from local :
 ```
 git clone https://github.com/onesubhadip/PETSTORE.git
 cd PETSTORE

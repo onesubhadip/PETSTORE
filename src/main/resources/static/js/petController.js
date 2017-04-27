@@ -34,6 +34,7 @@ app.controller('PetController', ['$scope', 'PetService', 'Filters', function($sc
         PetService.savePet(petCtrl.petObjToAdd).then(function(response) {
             console.log('data', response.data);
             if (petCtrl.isAddFormOpen) { petCtrl.isAddFormOpen = false; }
+            petCtrl.clearForm();
         }, function(err) {
             console.log('Error: ', err.data.errorMessage);
         });
@@ -44,6 +45,7 @@ app.controller('PetController', ['$scope', 'PetService', 'Filters', function($sc
                 petCtrl.uniqueCategories = PetService.getDistinctCategoty(data);
                 if (inventoryStatus.toUpperCase() === "ALL".toUpperCase()) {
                     petCtrl.uniqueStatus = PetService.getDistinctStatus(data);
+                    console.log(data);
                 }
             },
             function(err) {

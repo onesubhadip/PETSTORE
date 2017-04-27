@@ -32,7 +32,21 @@
                             <option value="4">Fish</option>
                         </select>
                         <input class="btn btn-lg btn-middle " type="text" placeholder="Description" required="" ng-model="petCtrl.petObjToAdd.description">
-                        <input class="btn btn-lg btn-middle " type="text" placeholder="Pet Image URL" ng-model="petCtrl.tempImageForPost">
+<!--                         <input class="btn btn-lg btn-middle " type="text" placeholder="Pet Image URL" ng-model="petCtrl.tempImageForPost"> -->
+
+                        <select ng-model="petCtrl.tempImageForPost" class="btn btn-lg btn-middle" style="padding-bottom: 11px;" required>
+                            <option disabled selected value>Dummy Image</option>
+                            <option value="biglion">Old Lion</option>
+                            <option value="kidlion">Lion Kid</option>
+                            <option value="bulldog">Bulldog</option>
+                            <option value="happydog">Happy Dog</option>
+                            <option value="unhappydog">Unhappy Dog</option>
+                            <option value="fishleft">Fish</option>
+                            <option value="fishright">Small Fish</option>
+                            <option value="goodlookingcat">Smart Cat</option>
+                            <option value="dangerouscat">Killer Cat</option>
+                        </select>
+
                         <button class="btn btn-info btn-lg btn-middle " type="button" ng-click="petCtrl.savePet()">Add Pet</button>
                         <button class="btn btn-info btn-lg " type="button" ng-click="petCtrl.toggleAddPetForm();petCtrl.clearForm()">Cancel</button>
                     </div>
