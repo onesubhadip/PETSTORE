@@ -2,7 +2,6 @@
 
 angular.module('PETSTORE', [
 	'ngRoute',
-	'ui.bootstrap',
 	'ngResource',
 	'pageslide-directive'
 ])
@@ -10,10 +9,10 @@ angular.module('PETSTORE', [
 	$routeProvider.when('/', {
 		redirectTo: '/home'
 	}).when('/home', {
-		templateUrl: '/petstore/htmls/petStoreHome.html',
+		templateUrl: '/petstore/templates/petStoreHome.html',
 		reloadOnSearch: false
 	}).when('/petlist', {
-		templateUrl: '/petstore/htmls/petGrid.html',
+		templateUrl: '/petstore/templates/petGrid.html',
 		reloadOnSearch: false
 	})
 	.otherwise('/');

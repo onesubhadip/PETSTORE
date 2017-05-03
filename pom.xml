@@ -47,13 +47,68 @@
 		</dependency>
 	</dependencies>
 
-
-
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>exec-npm-install</id>
+						<phase>initialize</phase>
+						<configuration>
+							<executable>npm.cmd</executable>
+							<workingDirectory>client</workingDirectory>
+							<arguments>
+								<argument>install</argument>
+							</arguments>
+						</configuration>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>exec-gulp-build</id>
+						<phase>initialize</phase>
+						<configuration>
+							<executable>gulp.cmd</executable>
+							<workingDirectory>client</workingDirectory>
+							<arguments>
+								<argument>build</argument>
+							</arguments>
+						</configuration>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<id>copy-ui-src</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/src/main/resources/public</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${basedir}/client/build</directory>
+									<!-- <filtering>true</filtering> -->
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

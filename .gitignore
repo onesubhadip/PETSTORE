@@ -2,3 +2,7 @@
 .classpath
 .project
 .settings/
+client/build/*
+client/bower_components/*
+client/node_modules/*
+src/main/resources/public/*

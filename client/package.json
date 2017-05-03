@@ -1,0 +1,23 @@
+{
+  "name": "petstore",
+  "version": "1.0.0",
+  "description": "Basic pet store UI backed by java rest services",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "bower install"
+  },
+  "author": "subhadip",
+  "license": "ISC",
+  "devDependencies": {
+    "bower": "^1.8.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-callback": "0.0.3",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-rev": "^7.1.2",
+    "gulp-uglify": "^2.1.2",
+    "gulp-usemin": "^0.3.28",
+    "run-sequence": "^1.2.2"
+  }
+}

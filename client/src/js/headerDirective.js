@@ -3,7 +3,7 @@
 app.directive('petStoreHeader', function() {
 	return {
 		restrict:'E',
-		templateUrl: '/petstore/htmls/header.html',
+		templateUrl: '/petstore/templates/header.html',
 		replace:true,
 		scope:{}
 	}

@@ -3,7 +3,7 @@
 app.directive('petInfo', function() {
     return {
         restrict: 'AE',
-        templateUrl: '/petstore/htmls/petInfo.html',
+        templateUrl: '/petstore/templates/petInfo.html',
         replace: true,
         scope: {
             pet: "="

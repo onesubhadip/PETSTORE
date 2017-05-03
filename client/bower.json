@@ -1,0 +1,25 @@
+{
+  "name": "petstore",
+  "description": "Basic pet store UI backed by java rest services",
+  "main": "app.js",
+  "authors": [
+    "subhadip"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/build",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "angular-resource": "^1.6.4",
+    "angular-pageslide-directive": "^2.1.4"
+  }
+}
