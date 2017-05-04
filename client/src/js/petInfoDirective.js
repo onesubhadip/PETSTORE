@@ -1,5 +1,8 @@
 'use strict';
 
+/*
+ * Directive to display a pet information in a Box with image, name, category, description and status.
+ */
 app.directive('petInfo', function() {
     return {
         restrict: 'AE',
@@ -10,6 +13,7 @@ app.directive('petInfo', function() {
         },
         controller: ['$scope', 'PetService', '$rootScope', function($scope, PetService, $rootScope) {
 
+        	//Method to remove a pet which is in 'Sold' status.
             $scope.removePet = function() {
             	console.log('pet', $scope.pet);
                 PetService.petResource().remove($scope.pet, function(data) {

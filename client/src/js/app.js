@@ -1,5 +1,8 @@
 'use strict';
 
+/*
+ * Entry point of petstore front end application
+ */
 angular.module('PETSTORE', [
 	'ngRoute',
 	'ngResource',

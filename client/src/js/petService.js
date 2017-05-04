@@ -1,7 +1,13 @@
 'use strict';
 
+/*
+ * All services for pet resource related operations
+ */
 app.factory('PetService', ['$resource', '$filter', '$http', function($resource, $filter, $http) {
 
+	/*
+	 * CRUD operations on pet resource.
+	 */
     var petResource = function() {
         return $resource('/petstore/pet/:petId', {petId : '@petId'}, {
             getByStatus: {
@@ -16,11 +22,13 @@ app.factory('PetService', ['$resource', '$filter', '$http', function($resource, 
             }
         });
     }
+    
+    //Specific method to POST a new pet
  	var savePet = function(pet){
 		return $http.post('/petstore/pet/', pet);
  	} 
-    $http.post
-
+    
+ 	//Get distinct categories of pets from a given list of Pets.
     var getDistinctCategoty = function(pets) {
         var list = {};
         pets.forEach(function(pet) {
@@ -39,6 +47,8 @@ app.factory('PetService', ['$resource', '$filter', '$http', function($resource, 
         });
         return uniqueItems;
     }
+    
+    //Get distinct inventory status of pets from a given list of Pets.
     var getDistinctStatus = function(pets) {
         var list = {};
         pets.forEach(function(pet) {

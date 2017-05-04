@@ -6,6 +6,7 @@ app.controller('PetController', ['$scope', 'PetService', 'Filters', function($sc
     petCtrl.uniqueCategories = [];
     petCtrl.uniqueStatus = [];
 
+    //the pet object in question
     petCtrl.petObjToAdd = {
         "category": {
             "categoryId": null
@@ -16,6 +17,7 @@ app.controller('PetController', ['$scope', 'PetService', 'Filters', function($sc
         "status": "Available"
     };
     petCtrl.tempImageForPost = "";
+    //Method to reset the default pet object
     petCtrl.clearForm = function() {
         petCtrl.petObjToAdd = {
             "category": {
@@ -29,6 +31,7 @@ app.controller('PetController', ['$scope', 'PetService', 'Filters', function($sc
         petCtrl.tempImageForPost = "";
     }
 
+    //Method to save a new pet
     petCtrl.savePet = function() {
         petCtrl.petObjToAdd.photoUrls.push(petCtrl.tempImageForPost);
         PetService.savePet(petCtrl.petObjToAdd).then(function(response) {
@@ -40,6 +43,7 @@ app.controller('PetController', ['$scope', 'PetService', 'Filters', function($sc
         });
     }
 
+    //Method to get all pets for a given status
     petCtrl.getPetListByStatus = function(inventoryStatus) {
         petCtrl.pets = PetService.petResource().getByStatus({ status: inventoryStatus }, function(data) {
                 petCtrl.uniqueCategories = PetService.getDistinctCategoty(data);
@@ -53,6 +57,7 @@ app.controller('PetController', ['$scope', 'PetService', 'Filters', function($sc
             });
     }
 
+    //Method to get all pets for a given list of categories
     petCtrl.getPetListByCategories = function(categories) {
         petCtrl.pets = PetService.petResource().getByCategories({ categories: categories }, function(data) {
                 //petCtrl.uniqueCategories = PetService.getDistinctCategoty(data)
@@ -63,25 +68,26 @@ app.controller('PetController', ['$scope', 'PetService', 'Filters', function($sc
 
     }
 
+    //Watchers on the filters applied on the left side bar of the UI.
     $scope.$watch(function() {
         return Filters.getStatus();
     }, function(statusToFilter) {
         petCtrl.getPetListByStatus(statusToFilter);
-        /*petCtrl.pets = PetService.filterByCategory(petCtrl.pets, categoriesToFilter);*/
     }, true);
     $scope.$watch(function() {
         return Filters.getCategory();
     }, function(categoriesToFilter) {
         petCtrl.getPetListByCategories(categoriesToFilter);
-        /*petCtrl.pets = PetService.filterByCategory(petCtrl.pets, categoriesToFilter);*/
     }, true);
 
+    //When a pet is removed, then to update the grid this is called.
     $scope.$on('isNewFetchRequired', function(event, data) {
         if(data !== undefined && data.required){
             petCtrl.getPetListByStatus("All");
         }
     });
 
+    //Utility code for controlling the sliding form for adding new pet.
     petCtrl.isAddFormOpen = false;
     petCtrl.size = '100px';
     petCtrl.toggleAddPetForm = function() {

@@ -8,7 +8,9 @@ import org.petstore.util.PetStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
-
+/*
+ * Pet business service implementation class. Depends on PetReposotory to fetch data from DB.
+ */
 @Service
 public class PetService {
 

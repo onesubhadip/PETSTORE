@@ -4,7 +4,10 @@
 <head>
     <meta charset="ISO-8859-1">
     <title>Pet Store</title>
+    <!-- Consolidated css for petstore app -->
     <link rel="stylesheet" type="text/css" href="/petstore/css/main.css">
+    
+    <!-- Google fonts directly imported from CDN -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
@@ -12,9 +15,12 @@
 </head>
 
 <body>
+	<!-- Consolidated JS for petstore app -->
     <script src="/petstore/js/mainApp.js"></script>
-    <div ng-app="PETSTORE">
-    	<div ng-view></div>
+    <!-- The petstore angular app begins here -->
+    <div data-ng-app="PETSTORE">
+    	<!-- Views will be loaded here as part of ng-view -->
+    	<div data-ng-view></div>
     </div>
 </body>
 

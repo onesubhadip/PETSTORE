@@ -8,6 +8,9 @@
 #### Fornt-End : 
 - AngularJs
 - Bootstrap
+- NPM
+- Bower
+- Gulp
 
 #### Back End Services :
 - Spring Boot
@@ -23,6 +26,10 @@
 
 
 ### Run from local :
+
+#### *Npm* and *Gulp* must be installed globally in order to build the project.
+> If using unix, replace 'npm.cmd' with 'npm' and 'gulp.cmd' with 'gulp' in the pom.xml. 
+
 ```
 git clone https://github.com/onesubhadip/PETSTORE.git
 cd PETSTORE

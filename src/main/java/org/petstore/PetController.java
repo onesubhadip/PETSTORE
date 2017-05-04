@@ -25,11 +25,15 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-
+/*
+ * REST endpoint controller for pet resource. 
+ * Configured with swagger annotations to provide swagger documentation for API
+ */
 @RestController
 @RequestMapping(value = "/pet")
 @Api(tags = { "Pet resources" })
 public class PetController {
+	
 	@Autowired
 	private PetService petService;
 

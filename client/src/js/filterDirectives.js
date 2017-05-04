@@ -1,5 +1,7 @@
 'use strict';
-
+/*
+ * Directive for displaying individual categories in the left side bar in the UI
+ */
 app.directive('category', function() {
 	return {
 		restrict:'E',
@@ -19,6 +21,9 @@ app.directive('category', function() {
 	}
 });
 
+/*
+ * Directive for displaying individual status in the left side bar
+ */
 app.directive('status', function() {
 	return {
 		restrict:'E',

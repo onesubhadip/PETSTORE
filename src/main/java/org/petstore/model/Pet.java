@@ -18,7 +18,9 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+/*
+ * Pet Entity class
+ */
 @ApiModel(value = "Pet")
 @Entity
 public class Pet {

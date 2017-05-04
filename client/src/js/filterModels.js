@@ -1,5 +1,7 @@
 'use strict';
-
+/*
+ * Utility service to keep track of the applied filter selections on the left side bar.
+ */
 app.service('Filters', ['$filter', function($filter) {
     var models = this;
     models.category = [];

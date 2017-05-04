@@ -1,5 +1,8 @@
 package org.petstore.model;
 
+/*
+ * DTO for error response
+ */
 public class ErrorResponse {
 
 	private String errorMessage;

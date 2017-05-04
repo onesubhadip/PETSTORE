@@ -1,5 +1,7 @@
 <pet-store-header></pet-store-header>
+
 <div class="container" ng-controller="PetController as petCtrl" style="position: relative;">
+    <!-- Petstore landing page designs -->
     <div class="row" style="margin-top:50px;">
         <div class="col-xs-6">
             <img class="home-image img-responsive pull-right" src="/petstore/image/bulldog.svg" alt="PetStore Home Image">
@@ -16,7 +18,9 @@
             <a type="button" href="#!/petlist" class="btn btn-header pull-left">SHOW PETS</a>
         </div>
     </div>
+	<!-- End Petstore landing page designs -->
 
+	<!-- Add Pet sliding form in the home page -->
     <div pageslide ps-open="petCtrl.isAddFormOpen" ps-side="bottom" ps-speed="0.25" ps-body-class="true" ps-click-outside="false" ps-size="65px">
         <div class="container">
             <div class="row">
@@ -55,4 +59,5 @@
             </div>
         </div>
     </div>
+    <!-- End Add Pet sliding form in the home page -->
 </div>
